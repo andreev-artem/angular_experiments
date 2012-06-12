@@ -1,0 +1,74 @@
+<html>
+<head>
+    <title>Test</title>
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+
+    <script type="text/javascript" src="../js/angular-1.0.0rc10.js"></script>
+    <script type="text/javascript" src="ng-if.js"></script>
+    <script type="text/javascript">
+        angular.element(document).ready(function() {
+            angular.bootstrap(document, ['ExperimentsModule']);
+        });
+
+        function TestController($scope) {
+            $scope.orders = [
+                {
+                    name: 'a1',
+                    type: 1,
+                    description: 'aaaaaaaaaaaaaa1111111111111'
+                },
+                {
+                    name: 'a2',
+                    type: 2,
+                    description: 'aaaaaaaaaaaaaa2222222222222'
+                },
+                {
+                    name: 'a3',
+                    type: 1,
+                    description: ''
+                }
+            ];
+
+            //alert($scope.orders[0].type == 1 && $scope.orders[0].description);
+        };
+    </script>
+</head>
+<body ng-controller="TestController">
+    <table class="table table-bordered">
+        <tr ng-repeat="order in orders">
+            <td>{{order.name}}</td>
+            <td>
+                <div ng-switch="order.type">
+                    <span class="label label-warning" ng-switch-when="1" ng-show="order.description">{{order.description}}</span>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table table-bordered">
+        <tr ng-repeat="order in orders">
+            <td>{{order.name}}</td>
+            <td>
+                <div ng-switch="order.type == 1 && !!order.description">
+                    <span class="label label-warning" ng-switch-when="true">{{order.description}}</span>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table table-bordered">
+        <tr ng-repeat="order in orders">
+            <td>{{order.name}}</td>
+            <td>
+                <span class="label label-warning" ng-if="order.type == 1 && order.description">{{order.description}}</span>
+            </td>
+            <td>
+                <button ng-click="order.type=1">Show (set type 1)</button>
+                <button ng-click="order.type=2">Hide (set type 2)</button>
+                <button ng-click="order.description=1111111">Set description to '1111111'</button>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
