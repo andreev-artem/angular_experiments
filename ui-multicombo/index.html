@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="css/ui-multicombo.css">
+    <style type="text/css">
+        input, textarea, select, .uneditable-input {
+            margin-bottom: 0;
+        }
+    </style>
+
+    <script type="text/javascript" src="../js/angular-1.0.0rc10.js"></script>
+    <script type="text/javascript" src="ui-multicombo.js"></script>
+
+    <script type="text/javascript">
+        angular.element(document).ready(function() {
+            angular.bootstrap(document, ['ExperimentsModule']);
+        });
+
+        function TestController($scope) {
+            $scope.choices1 = [
+                {value: 1, text:'aaa'},
+                {value: 2, text:'bbb'},
+                {value: 3, text:'ccc'},
+            ];
+            $scope.selectedChoices1 = [];
+
+            $scope.choices2 = [
+                {value: 1, text:'111'},
+                {value: 2, text:'222'},
+                {value: 3, text:'333'},
+                {value: 4, text:'444'}
+            ];
+            $scope.selectedChoices2 = [];
+
+            $scope.addChoice = function(choices, newValueName, newTextName) {
+                choices.push({value: $scope[newValueName], text: $scope[newTextName]});
+                $scope[newValueName]='';
+                $scope[newTextName]='';
+            };
+        };
+    </script>
+</head>
+<body ng-controller="TestController">
+    <div ui-mcombo-choices="choices1" ui-mcombo-selected="selectedChoices1">
+    </div>
+
+    <p>choices</p>
+    <ul>
+        <li ng-repeat="choice in choices1">{{choice.text}}</li>
+    </ul>
+
+    <p>selectedChoices</p>
+    <ul>
+        <li ng-repeat="choice in selectedChoices1">{{choice.text}}</li>
+    </ul>
+    <input class="span2" placeholder="value" ng-model="newChoice1Value">
+    <input class="span2" placeholder="text" ng-model="newChoice1Text">
+    <button class="btn btn-primary" ng-click="addChoice(choices1, 'newChoice1Value', 'newChoice1Text')">Add choice</button>
+
+    <hr>
+
+    <div ui-mcombo-choices="choices2" ui-mcombo-selected="selectedChoices2">
+    </div>
+
+    <p>choices</p>
+    <ul>
+        <li ng-repeat="choice in choices2">{{choice.text}}</li>
+    </ul>
+
+    <p>selectedChoices</p>
+    <ul>
+        <li ng-repeat="choice in selectedChoices2">{{choice.text}}</li>
+    </ul>
+    <input class="span2" placeholder="value" ng-model="newChoice2Value">
+    <input class="span2" placeholder="text" ng-model="newChoice2Text">
+    <button class="btn btn-primary" ng-click="addChoice(choices2, 'newChoice2Value', 'newChoice2Text')">Add choice</button>
+
+</body>
+</html>
+
