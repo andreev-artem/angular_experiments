@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+
+    <script type="text/javascript" src="../js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="../js/angular-1.0.0rc10.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="tb-tooltip.js"></script>
+
+    <script type="text/javascript">
+        angular.element(document).ready(function() {
+            angular.bootstrap(document, ['ExperimentsModule']);
+        });
+
+        function TestController($scope) {
+            $scope.orders = [
+                {description:'111', cancelDateTime: new Date(new Date() - 60 * 1000)},
+                {description:'222', cancelDateTime: new Date(new Date() - 2 * 60 * 1000)},
+                {description:'333', cancelDateTime: new Date(new Date() - 3 * 60 * 1000)}
+            ];
+
+            $scope.setNow = function(order) {
+                order.cancelDateTime = new Date();
+            };
+        };
+    </script>
+</head>
+<body ng-controller="TestController">
+    <table class="table table-bordered" style="margin-top: 100px;">
+        <tr ng-repeat="order in orders">
+            <td>{{order.description}}</td>
+            <td>
+                <span class="label label-warning"
+                      tb-tooltip
+                      title="You should pay order before {{order.cancelDateTime | date:'dd.MM.yyyy HH:mm'}}">
+                    {{order.cancelDateTime | date:'dd.MM.yyyy HH:mm'}}
+                </span>
+            </td>
+            <td><button class="btn" ng-click="setNow(order)">Set cancelDateTime to now</button></td>
+        </tr>
+    </table>
+</body>
+</html>
