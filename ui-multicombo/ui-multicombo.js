@@ -5,7 +5,6 @@ angular.module("ExperimentsModule", [])
         return {
             restrict: 'A',
             replace: true,
-            scope: true,
             template:
                 '<div class="mcombo-container mcombo-container-multi" style="width: 300px;">' +
                 '    <ul class="mcombo-selected-choices">' +
@@ -26,14 +25,11 @@ angular.module("ExperimentsModule", [])
                 '        </ul>' +
                 '    </div>' +
                 '</div>',
-            inject: {
-                uiMcomboChoices: 'accessor',
-                uiMcomboSelected: 'accessor'
+            scope: {
+                _choices: '=uiMcomboChoices',
+                _selectedChoices: '=uiMcomboSelected'
             },
-            controller: ['$scope', 'uiMcomboChoices', 'uiMcomboSelected', '$filter',
-                function($scope, uiMcomboChoices, uiMcomboSelected, $filter) {
-                    $scope._choices = uiMcomboChoices();
-                    $scope._selectedChoices = uiMcomboSelected();
+            controller: ['$scope', '$filter', function($scope, $filter) {
                     $scope._searchElem = null;
 
                     $scope.filteredChoices = function() {
