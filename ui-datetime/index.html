@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <style type="text/css">
+        input, textarea, select, .uneditable-input {
+            margin-bottom: 0;
+        }
+    </style>
+
+    <script type="text/javascript" src="../js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui-1.8.22.datepicker.min.js"></script>
+    <script type="text/javascript" src="../js/angular-1.0.1.js"></script>
+    <script type="text/javascript" src="ui-datetime.js"></script>
+
+    <script type="text/javascript">
+        angular.element(document).ready(function() {
+            angular.bootstrap(document, ['ExperimentsModule']);
+        });
+
+        function TestController($scope) {
+            $scope.datetime1 = Date.now();
+        };
+    </script>
+</head>
+<body ng-controller="TestController">
+    <ui-datetime ng-model="datetime1"></ui-datetime>
+</body>
+</html>
