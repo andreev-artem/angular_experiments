@@ -1,0 +1,12 @@
+.ui-datetime .date {
+    width: 8em;
+}
+
+.ui-datetime .hours,
+.ui-datetime .minutes {
+    width: 3em;
+}
+
+.ui-datetime input+input {
+    margin-left: 5px;
+}

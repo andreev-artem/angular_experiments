@@ -5,11 +5,8 @@
     <meta charset="UTF-8">
 
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
-    <style type="text/css">
-        input, textarea, select, .uneditable-input {
-            margin-bottom: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/ui-lightness/jquery-ui-1.8.22.custom.css">
+    <link rel="stylesheet" href="css/ui-datetime.css">
 
     <script type="text/javascript" src="../js/jquery-1.7.2.js"></script>
     <script type="text/javascript" src="../js/jquery-ui-1.8.22.datepicker.min.js"></script>
@@ -22,11 +19,12 @@
         });
 
         function TestController($scope) {
-            $scope.datetime1 = Date.now();
-        };
+            $scope.datetime1 = new Date();
+        }
     </script>
 </head>
 <body ng-controller="TestController">
     <ui-datetime ng-model="datetime1"></ui-datetime>
+    {{datetime1}}
 </body>
 </html>
