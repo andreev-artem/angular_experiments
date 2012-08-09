@@ -19,7 +19,7 @@ angular.module("ExperimentsModule", [])
                         if (num < 10) return '0' + num;
                         return num;
                     };
-                    scope._date = fillNull(date.getDate() + 1) + '.' + fillNull(date.getMonth() + 1) + '.' + date.getFullYear();
+                    scope._date = fillNull(date.getDate()) + '.' + fillNull(date.getMonth() + 1) + '.' + date.getFullYear();
                     scope._hours = date.getHours();
                     scope._minutes = date.getMinutes();
                 };
