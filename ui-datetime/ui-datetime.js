@@ -34,12 +34,12 @@ angular.module("ExperimentsModule", [])
 
                 var watchExpr = function() {
                     var res = scope.$eval('_date').split('.');
-                    if (res.length == 3) return new Date(res[2], res[1] - 1, res[0], scope.$eval('_hours'), scope.$eval('_minutes')).getTime();
+                    if (res.length == 3) return new Date(res[2], res[1] - 1, res[0], scope.$eval('_hours'), scope.$eval('_minutes'));
                     return 0;
                 };
                 scope.$watch(watchExpr, function (newValue) {
-                    ngModelCtrl.$setViewValue(new Date(newValue));
-                });
+                    ngModelCtrl.$setViewValue(newValue);
+                }, true);
             }
         };
     });
