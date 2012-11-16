@@ -1,0 +1,7 @@
+.checkbox-control {
+    cursor: pointer;
+}
+.checkbox-control .checkbox-label {
+    display: inline-block;
+    margin-left: 3px;
+}
