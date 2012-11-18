@@ -1,0 +1,29 @@
+.rate-control {
+    margin: 0;
+    list-style: none;
+}
+
+.rate-control:before,
+.rate-control:after {
+    display: table;
+    content: "";
+    line-height: 0;
+}
+
+.rate-control:after {
+    clear: both;
+}
+
+.rate-control li {
+    float: left;
+}
+
+.icon-star-empty.icon-star-half:after {
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    display: inline-block;
+    text-decoration: inherit;
+    content: "\f006";
+    text-indent: -.4em;
+}

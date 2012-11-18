@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="../font_awesome/bootstrap_wo_icons/css/bootstrap.css">
+
+    <link rel="stylesheet" href="../font_awesome/css/font-awesome.css">
+
+    <script type="text/javascript" src="../js/angular-1.0.1.js"></script>
+
+    <link rel="stylesheet" href="css/ui-rate.css">
+    <script type="text/javascript" src="ui-rate.js"></script>
+
+    <style>
+        body {
+            font-size: 30px;
+        }
+
+        .checkbox-control.ng-invalid {
+            color: red;
+        }
+
+        form {
+            padding: 20px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        angular.element(document).ready(function() {
+            angular.bootstrap(document, ['ExperimentsModule']);
+        });
+
+        function TestController($scope) {
+            $scope.filters = {
+                rating: 3.5
+            }
+        };
+    </script>
+</head>
+<body ng-controller="TestController">
+    <form>
+        <input type="text" ng-model="filters.rating" />
+        <ui-rate max="5" ng-model="filters.rating"></ui-rate>
+    </form>
+</body>
+</html>
