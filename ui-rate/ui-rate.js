@@ -5,31 +5,65 @@ angular.module("ExperimentsModule", [])
             replace: true,
             template:
                 '<ul class="rate-control">' +
-                    '<li ng-repeat="cls in classes()"><i ng-class="cls"></i></li>' +
+                    '<li ng-repeat="item in items">' +
+                        '<i ng-class="getClass($index)" ng-click="setValue($index, $event)"></i>' +
+                    '</li>' +
                 '</ul>',
             require: 'ngModel',
             scope: true,
             link: function (scope, element, attrs, ngModelCtrl) {
-                scope.value = false;
-                scope.max = attrs.max;
+                scope.value = undefined;
+                scope.items = new Array(+attrs.max);
 
                 ngModelCtrl.$render = function () {
-                    scope.value = ngModelCtrl.$viewValue;
+                    scope.last_value = scope.value = ngModelCtrl.$viewValue;
                 };
 
-                scope.classes = function() {
-                    var classes = [];
-                    for(var i = 1; i <= scope.value; ++i) {
-                        classes.push('icon-star');
+                scope.getClass = function(index) {
+                    if (index >= scope.value) {
+                        return 'icon-star-empty';
                     }
-                    if (Math.ceil(scope.value) - Math.floor(scope.value)) {
-                        classes.push('icon-star-empty icon-star-half');
+                    if (index == Math.floor(scope.value)) {
+                        return 'icon-star-empty icon-star-half';
                     }
-                    for(var i = Math.ceil(scope.value) + 1; i <= scope.max; ++i) {
-                        classes.push('icon-star-empty');
+                    if (index < scope.value) {
+                        return 'icon-star';
                     }
-                    return classes;
                 };
+
+                scope.setValue = function(index, e) {
+                    var star = angular.element(e.target);
+                    if (e.pageX < star.offset().left + star.outerWidth() / 2) {
+                        scope.last_value = index + 0.5;
+                    } else {
+                        scope.last_value = index + 1;
+                    }
+                    ngModelCtrl.$setViewValue(scope.last_value);
+                };
+
+                setTimeout(function(){
+                    scope.last_value = scope.value;
+                    var stars = element.find('i');
+                    angular.forEach(stars, function(elem, index){
+                        var star = angular.element(elem);
+                        star.bind('mousemove', function(e){
+                            if (e.pageX < star.offset().left + star.outerWidth() / 2) {
+                                scope.value = index + 0.5;
+                            } else {
+                                scope.value = index + 1;
+                            }
+                            if (!scope.$$phase) {
+                                scope.$digest();
+                            }
+                        });
+                    });
+                    element.bind('mouseout', function(){
+                        scope.value = scope.last_value;
+                        if (!scope.$$phase) {
+                            scope.$digest();
+                        }
+                    });
+                }, 0);
             }
         };
     });
