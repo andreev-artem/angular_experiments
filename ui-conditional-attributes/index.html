@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap-responsive.css">
+
+    <script type="text/javascript" src="../js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="../js/angular-1.0.1.js"></script>
+
+    <script type="text/javascript" src="../ui-responsive-width/ui-responsive-width.js"></script>
+    <script type="text/javascript" src="ui-conditional-attributes.js"></script>
+
+    <style>
+        .container {
+            background: #d3d3d3;
+        }
+
+        table {
+            margin: 2px;
+        }
+        td {
+            border: #ffffff solid 2px;
+        }
+
+        .width-1170 .rating {
+            width: 80px;
+        }
+        .width-940 .rating {
+            width: 15px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        angular.element(document).ready(function() {
+            angular.bootstrap(document, ['UiResponsiveWidthModule', 'UiConditionalAttributesModule']);
+        });
+    </script>
+</head>
+<body>
+    <div class="container" ui-responsive-width="width" ng-class="{'width-1170': width == 1170, 'width-940': width == 940}">
+        <p>Width: {{width}}</p>
+        <p>Change width from 1170 to 940 and back and watch the stars</p>
+        <table>
+            <tr>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td class="rating" ui-conditional-attributes='{"width == 1170": {"rowspan": 1}, "width == 940": {"rowspan": 2}}'>
+                    <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-empty"></i>
+                </td>
+            </tr>
+            <tr>
+                <td  ui-conditional-attributes='{"width == 1170": {"colspan": 5}, "width == 940": {"colspan": 4}}'>
+                    Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text texttext text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

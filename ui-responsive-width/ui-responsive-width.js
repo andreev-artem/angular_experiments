@@ -1,4 +1,4 @@
-angular.module("ExperimentsModule", [])
+angular.module("UiResponsiveWidthModule", [])
     .directive('uiResponsiveWidth', function ($parse) {
         return function (scope, element, attrs) {
             var width = element.width();
