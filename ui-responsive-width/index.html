@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap-responsive.css">
+
+    <script type="text/javascript" src="../js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="../js/angular-1.0.1.js"></script>
+
+    <script type="text/javascript" src="ui-responsive-width.js"></script>
+
+    <style>
+        .container {
+            background: #d3d3d3;
+        }
+    </style>
+
+    <script type="text/javascript">
+        angular.element(document).ready(function() {
+            angular.bootstrap(document, ['ExperimentsModule']);
+        });
+    </script>
+</head>
+<body>
+    <div class="container" ui-responsive-width="width">
+        <h1>Current width: {{width}}</h1>
+        <ng-switch on="width">
+            <div ng-switch-when="1170">This content is displayed when container width is 1170</div>
+            <div ng-switch-when="940">This content is displayed when container width is 940</div>
+            <div ng-switch-default>This content is displayed when container width is not 1170 or 940</div>
+        </ng-switch>
+    </div>
+</body>
+</html>
