@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="../font_awesome/bootstrap_wo_icons/css/bootstrap.css">
+    <link rel="stylesheet" href="../font_awesome/css/font-awesome.css">
+
+    <script type="text/javascript" src="../js/angular-1.0.1.js"></script>
+
+    <script type="text/javascript" src="ui-pagination.js"></script>
+
+    <style>
+        h1 {
+            text-align: center;
+        }
+        .pagination-large ul > li > a > i {
+            line-height: 17.5px;
+        }
+        .pagination ul > li > a, .pagination ul > li > span {
+            width: 20px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        angular.element(document).ready(function() {
+            angular.bootstrap(document, ['ExperimentsModule']);
+        });
+
+        function TestController($scope) {
+            $scope.pagination = {
+                cur: 1,
+                total: 25
+            }
+        };
+    </script>
+</head>
+<body ng-controller="TestController" class="container">
+    <h1>Page: <input type="number" ng-model="pagination.cur" min="1" max="{{pagination.total}}" class="span1" /></h1>
+    <ui-pagination cur="pagination.cur" total="pagination.total" display="9"></ui-pagination>
+    <ui-pagination cur="pagination.cur" total="pagination.total" display="12"></ui-pagination>
+</body>
+</html>
