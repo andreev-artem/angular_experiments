@@ -13,18 +13,28 @@
     <script type="text/javascript" src="../assets/js/angular-1.0.1.js"></script>
     <script type="text/javascript" src="ui-datetime.js"></script>
 
+    <style>
+        .container {
+            margin-top: 40px;
+        }
+    </style>
+
     <script type="text/javascript">
         angular.element(document).ready(function() {
             angular.bootstrap(document, ['ExperimentsModule']);
         });
 
         function TestController($scope) {
-            $scope.datetime1 = new Date();
+            $scope.dates = {
+                datetime1: new Date()
+            };
         }
     </script>
 </head>
 <body ng-controller="TestController">
-    <ui-datetime ng-model="datetime1"></ui-datetime>
-    {{datetime1}}
+    <div class="container well">
+        <ui-datetime ng-model="dates.datetime1"></ui-datetime>
+        {{dates.datetime1}}
+    </div>
 </body>
 </html>
