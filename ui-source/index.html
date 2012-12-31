@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
+
+    <script type="text/javascript" src="../assets/js/angular-1.0.1.js"></script>
+
+    <link rel="stylesheet" href="../assets/google-code-prettify/prettify.css" />
+    <script type="text/javascript" src="../assets/google-code-prettify/prettify.js"></script>
+    <script type="text/javascript" src="ui-source.js"></script>
+
+    <style>
+        .container {
+            margin-top: 40px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        angular.element(document).ready(function() {
+            angular.bootstrap(document, ['UiSourceModule']);
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+<ui-source>
+<ui-source>
+    <div>
+        <label>Name:</label>
+        <input type="text" ng-model="yourName" placeholder="Enter a name here">
+        <hr>
+        <h1>Hello {{yourName}}!</h1>
+    </div>
+</ui-source>
+</ui-source>
+    </div>
+</body>
+</html>
