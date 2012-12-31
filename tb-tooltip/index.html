@@ -11,6 +11,12 @@
     <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="tb-tooltip.js"></script>
 
+    <style>
+        .container {
+            margin-top: 40px;
+        }
+    </style>
+
     <script type="text/javascript">
         angular.element(document).ready(function() {
             angular.bootstrap(document, ['ExperimentsModule']);
@@ -30,18 +36,20 @@
     </script>
 </head>
 <body ng-controller="TestController">
-    <table class="table table-bordered" style="margin-top: 100px;">
-        <tr ng-repeat="order in orders">
-            <td>{{order.description}}</td>
-            <td>
+    <div class="container well">
+        <table class="table table-bordered">
+            <tr ng-repeat="order in orders">
+                <td>{{order.description}}</td>
+                <td>
                 <span class="label label-warning"
                       tb-tooltip
                       title="You should pay order before {{order.cancelDateTime | date:'dd.MM.yyyy HH:mm'}}">
                     {{order.cancelDateTime | date:'dd.MM.yyyy HH:mm'}}
                 </span>
-            </td>
-            <td><button class="btn" ng-click="setNow(order)">Set cancelDateTime to now</button></td>
-        </tr>
-    </table>
+                </td>
+                <td><button class="btn" ng-click="setNow(order)">Set cancelDateTime to now</button></td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>
