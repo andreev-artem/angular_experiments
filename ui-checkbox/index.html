@@ -4,11 +4,11 @@
     <title></title>
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="../font_awesome/bootstrap_wo_icons/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/font_awesome/bootstrap_wo_icons/css/bootstrap.css">
 
-    <link rel="stylesheet" href="../font_awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../assets/font_awesome/css/font-awesome.css">
 
-    <script type="text/javascript" src="../js/angular-1.0.1.js"></script>
+    <script type="text/javascript" src="../assets/js/angular-1.0.1.js"></script>
 
     <link rel="stylesheet" href="css/ui-checkbox.css">
     <script type="text/javascript" src="ui-checkbox.js"></script>
@@ -39,6 +39,8 @@
 <body ng-controller="TestController">
     <form>
         <ui-checkbox label="Test checkbox 1" ng-model="filters.cb1"></ui-checkbox>
+        <a class="btn" ng-click="filters.cb1=true">set true</a>
+        <a class="btn" ng-click="filters.cb1=false">set false</a>
         <hr>
         <ui-checkbox label="Test checkbox 2" ng-model="filters.cb2" required /></ui-checkbox>
     </form>
