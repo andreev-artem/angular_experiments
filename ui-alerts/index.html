@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
+
+    <script type="text/javascript" src="../assets/js/angular-1.0.1.js"></script>
+
+    <script type="text/javascript" src="ui-alerts.js"></script>
+
+    <style>
+        .container {
+            margin-top: 40px;
+        }
+
+        button {
+            margin-bottom: 10px !important;
+        }
+
+        .alert {
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        angular.element(document).ready(function() {
+            angular.bootstrap(document, ['UiAlertsModule']);
+        });
+
+        function TestController($scope, alertsService) {
+            $scope.alerts = alertsService;
+            $scope.error = 'An error occurred';
+            $scope.warning = 'An warning occurred';
+            $scope.success = 'Ok';
+        };
+    </script>
+</head>
+<body ng-controller="TestController">
+    <div class="container well">
+        <div class="span6">
+            <input type="text" ng-model="error" /> <button class="btn" ng-click="alerts.addError(error)">Add error</button>
+            <input type="text" ng-model="warning" /> <button class="btn" ng-click="alerts.addWarning(warning)">Add warning</button>
+            <input type="text" ng-model="success" /> <button class="btn" ng-click="alerts.addSuccess(success)">Add success</button>
+        </div>
+        <div class="span5">
+            <ui-alerts></ui-alerts>
+        </div>
+    </div>
+</body>
+</html>
