@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
+
+    <script type="text/javascript" src="../assets/js/angular-1.0.3.js"></script>
+
+    <script type="text/javascript" src="ui-length-limit.js"></script>
+
+    <style>
+        .container {
+            margin-top: 40px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        angular.element(document).ready(function() {
+            angular.bootstrap(document, ['UiLengthLimitModule']);
+        });
+
+        function TestController($scope) {
+            $scope.superModel = {
+                text: ''
+            }
+        };
+    </script>
+</head>
+<body ng-controller="TestController">
+    <div class="container well">
+        Max symbols: 10 <br />
+        <input type="text" ng-model="superModel.text" ui-length-limit="10" />
+    </div>
+</body>
+</html>
