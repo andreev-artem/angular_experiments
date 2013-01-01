@@ -31,14 +31,18 @@
         function TestController($scope) {
             $scope.pagination = {
                 cur: 1,
-                total: 25
+                total: 25,
+                display: 12
             }
         };
     </script>
 </head>
-<body ng-controller="TestController" class="container">
-    <h1>Page: <input type="number" ng-model="pagination.cur" min="1" max="{{pagination.total}}" class="span1" /></h1>
-    <ui-pagination cur="pagination.cur" total="pagination.total" display="9"></ui-pagination>
-    <ui-pagination cur="pagination.cur" total="pagination.total" display="12"></ui-pagination>
+<body ng-controller="TestController">
+    <div class="container well">
+        <h1>Page: <input type="number" ng-model="pagination.cur" min="1" max="{{pagination.total}}" class="span1" /></h1>
+        <ui-pagination cur="pagination.cur" total="pagination.total" display="9"></ui-pagination>
+        <ui-pagination cur="pagination.cur" total="pagination.total" display="{{pagination.display}}"></ui-pagination>
+        <div style="text-align: center;">Display: <input type="number" ng-model="pagination.display" min="1" max="{{pagination.total}}" class="span1" /></div>
+    </div>
 </body>
 </html>
