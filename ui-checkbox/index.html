@@ -38,11 +38,11 @@
 </head>
 <body ng-controller="TestController">
     <form>
-        <ui-checkbox label="Test checkbox 1" ng-model="filters.cb1"></ui-checkbox>
+        <ui-checkbox ng-model="filters.cb1">Test checkbox 1</ui-checkbox>
         <a class="btn" ng-click="filters.cb1=true">set true</a>
         <a class="btn" ng-click="filters.cb1=false">set false</a>
         <hr>
-        <ui-checkbox label="Test checkbox 2" ng-model="filters.cb2" required /></ui-checkbox>
+        <ui-checkbox ng-model="filters.cb2" required /><b>Test</b> checkbox 2</ui-checkbox>
     </form>
 </body>
 </html>
