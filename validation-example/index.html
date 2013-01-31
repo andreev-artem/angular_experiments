@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Validation examples</title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="../assets/font_awesome/bootstrap_wo_icons/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/font_awesome/css/font-awesome.css">
+
+    <script type="text/javascript" src="../assets/js/angular-1.0.3.js"></script>
+
+    <link rel="stylesheet" href="../assets/google-code-prettify/prettify.css" />
+    <script type="text/javascript" src="../assets/google-code-prettify/prettify.js"></script>
+    <script type="text/javascript" src="../ui-source/ui-source.js"></script>
+
+    <style>
+        input.ng-invalid {
+            color: #b94a48;
+            border-color: #ee5f5b;
+        }
+        input.ng-invalid:focus {
+            border-color: #e9322d;
+            -webkit-box-shadow: 0 0 6px #f8b9b7;
+            -moz-box-shadow: 0 0 6px #f8b9b7;
+            box-shadow: 0 0 6px #f8b9b7;
+        }
+        input.ng-valid {
+            color: #468847;
+            border-color: #468847;
+        }
+        input.ng-valid:focus {
+            border-color: #468847;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        }
+    </style>
+
+    <script type="text/javascript">
+        var mod = angular.module('validationModule', ['UiSourceModule']);
+
+        mod.directive('strongPassRequired', function () {
+            var isValid = function(s) {
+                return s && s.length > 5 && /\D/.test(s) && /\d/.test(s);
+            };
+
+            return {
+                require:'ngModel',
+                link:function (scope, elm, attrs, ctrl) {
+
+                    ctrl.$parsers.unshift(function (viewValue) {
+                        ctrl.$setValidity('strongPass', isValid(viewValue));
+                        return viewValue;
+                    });
+
+                    ctrl.$formatters.unshift(function (modelValue) {
+                        ctrl.$setValidity('strongPass', isValid(modelValue));
+                        return modelValue;
+                    });
+                }
+            };
+        });
+    </script>
+</head>
+<body ng-app="validationModule">
+    <div class="container well">
+        <h2 id="noform">Validation without form</h2>
+        <div class="row">
+            <div class="span4">
+                <label>E-mail:</label>
+                <input type="email" ng-model="myEmail" ng-required="isEmailRequired">
+                <label class="checkbox">
+                    <input type="checkbox" ng-model="isEmailRequired"> required
+                </label>
+            </div>
+            <div class="span8">
+<ui-source>
+<label>E-mail:</label>
+<input type="email" ng-model="myEmail" ng-required="isEmailRequired">
+<label class="checkbox">
+    <input type="checkbox" ng-model="isEmailRequired"> required
+</label>
+</ui-source>
+            </div>
+        </div>
+
+        <h2>Simple form</h2>
+        <div class="row">
+            <div class="span4">
+                <form name="myForm">
+                    <label>Some required text:</label>
+                    <input type="text" name="myInput" ng-model="myText" required>
+                    <span class="text-error" ng-show="myForm.myInput.$error.required">Required!</span>
+                    <ul class="unstyled">
+                        <li>myText = {{myText}}</li>
+                        <li>myForm.myInput.$valid = {{myForm.myInput.$valid}}</li>
+                        <li>myForm.myInput.$error = {{myForm.myInput.$error}}</li>
+                        <li>myForm.$invalid = {{myForm.$invalid}}</li>
+                        <li>myForm.$error.required = {{!!myForm.$error.required}}</li>
+                    </ul>
+                </form>
+            </div>
+            <div class="span8">
+<ui-source>
+<form name="myForm">
+    Some required text: <input type="text" name="myInput" ng-model="myText" required>
+    <span class="text-error" ng-show="myForm.myInput.$error.required">Required!</span>
+    <ul class="unstyled">
+        <li>myText = {{myText}}</li>
+        <li>myForm.myInput.$valid = {{myForm.myInput.$valid}}</li>
+        <li>myForm.myInput.$error = {{myForm.myInput.$error}}</li>
+        <li>myForm.$invalid = {{myForm.$invalid}}</li>
+        <li>myForm.$error.required = {{!!myForm.$error.required}}</li>
+    </ul>
+</form>
+</ui-source>
+            </div>
+        </div>
+
+        <h2>Strong password validator (6+ symbols, one digit, one non-digit)</h2>
+        <div class="row">
+            <div class="span4">
+                <form name="myPassForm">
+                    <label>New password:</label>
+                    <input type="password" name="myPass" ng-model="myPass" strong-pass-required>
+                    <div class="text-error" ng-show="myPassForm.myPass.$error.strongPass">
+                        Your password should contain 6+ symbols, one&nbsp;digit, one&nbsp;non-digit
+                    </div>
+                </form>
+            </div>
+            <div class="span8">
+<ui-source>
+<form name="myPassForm">
+    New password: <input type="password" name="myPass" ng-model="myPass" strong-pass-required>
+    <div class="text-error" ng-show="myPassForm.myPass.$error.strongPass">
+        Your password should contain 6+ symbols, one digit, one non-digit
+    </div>
+</form>
+</ui-source>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
