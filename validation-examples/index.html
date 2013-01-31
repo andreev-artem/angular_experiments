@@ -46,20 +46,50 @@
 
             return {
                 require:'ngModel',
-                link:function (scope, elm, attrs, ctrl) {
+                link:function (scope, elm, attrs, ngModelCtrl) {
 
-                    ctrl.$parsers.unshift(function (viewValue) {
-                        ctrl.$setValidity('strongPass', isValid(viewValue));
+                    ngModelCtrl.$parsers.unshift(function (viewValue) {
+                        ngModelCtrl.$setValidity('strongPass', isValid(viewValue));
                         return viewValue;
                     });
 
-                    ctrl.$formatters.unshift(function (modelValue) {
-                        ctrl.$setValidity('strongPass', isValid(modelValue));
+                    ngModelCtrl.$formatters.unshift(function (modelValue) {
+                        ngModelCtrl.$setValidity('strongPass', isValid(modelValue));
                         return modelValue;
                     });
                 }
             };
         });
+
+        mod.directive('isolatedForm', function(){
+            return {
+                require: 'form',
+                link: function(scope, formElement, attrs, formController) {
+                    var parentFormCtrl = formElement.parent().controller('form');
+                    var core$setValidity = formController.$setValidity;
+                    formController.$setValidity = function(validationToken, isValid, control) {
+                        core$setValidity(validationToken, isValid, control);
+                        if (!isValid && parentFormCtrl) {
+                            parentFormCtrl.$setValidity(validationToken, true, formController);
+                        }
+                    }
+                }
+            };
+        });
+
+        function ObjectCreatingController($scope) {
+            $scope.info = {
+                name: '',
+                description: '',
+                sites: []
+            };
+
+            $scope.addSite = function(){
+                $scope.info.sites.push({name: $scope.newName, url: $scope.newUrl});
+                $scope.newName = '';
+                $scope.newUrl = '';
+            };
+        }
     </script>
 </head>
 <body ng-app="validationModule">
@@ -84,7 +114,7 @@
             </div>
         </div>
 
-        <h2>Simple form</h2>
+        <h2 id="simpleform">Simple form</h2>
         <div class="row">
             <div class="span4">
                 <form name="myForm">
@@ -117,7 +147,7 @@
             </div>
         </div>
 
-        <h2>Strong password validator (6+ symbols, one digit, one non-digit)</h2>
+        <h2 id="passvalidator">Strong password validator (6+ symbols, one digit, one non-digit)</h2>
         <div class="row">
             <div class="span4">
                 <form name="myPassForm">
@@ -134,6 +164,75 @@
     New password: <input type="password" name="myPass" ng-model="myPass" strong-pass-required>
     <div class="text-error" ng-show="myPassForm.myPass.$error.strongPass">
         Your password should contain 6+ symbols, one digit, one non-digit
+    </div>
+</form>
+</ui-source>
+            </div>
+        </div>
+
+        <h2 id="isolatedform">Isolated form</h2>
+        <div class="row" ng-controller="ObjectCreatingController">
+            <div class="span4">
+                <h3>Object creating</h3>
+                <form name="creatingForm">
+                    <fieldset>
+                        <legend>Main info:</legend>
+                        <label>Name:</label>
+                        <input type="text" name="name" ng-model="info.name" required>
+
+                        <label>Description:</label>
+                        <textarea rows="4" name="description" ng-model="info.description"></textarea>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Sites:</legend>
+                        <ul>
+                            <li ng-repeat="site in info.sites">{{site.name}} ({{site.url}})</li>
+                        </ul>
+                        <ng-form name="newSiteForm" class="form-horizontal" isolated-form>
+                            <input type="text" class="span1" name="name" ng-model="newName" placeholder="name" required>
+                            <input type="url" class="span2" name="url" ng-model="newUrl" placeholder="url" required>
+                            <button class="btn" type="button" ng-click="addSite()" ng-disabled="newSiteForm.$invalid">
+                                Add
+                            </button>
+                        </ng-form>
+                        <p class="muted">This isolated form doesn't affect the validity of main (parent) form.</p>
+                    </fieldset>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-primary" ng-disabled="creatingForm.$invalid">Create</button>
+                    </div>
+                </form>
+            </div>
+            <div class="span8">
+<ui-source>
+<form name="creatingForm">
+    <fieldset>
+        <legend>Main info:</legend>
+        <label>Name:</label>
+        <input type="text" name="name" ng-model="info.name" required>
+
+        <label>Description:</label>
+        <textarea rows="4" name="description" ng-model="info.description"></textarea>
+    </fieldset>
+
+    <fieldset>
+        <legend>Sites:</legend>
+        <ul>
+            <li ng-repeat="site in info.sites">{{site.name}} ({{site.url}})</li>
+        </ul>
+        <ng-form name="newSiteForm" class="form-horizontal" isolated-form>
+            <input type="text" name="name" ng-model="newName" placeholder="name" required>
+            <input type="url" name="url" ng-model="newUrl" placeholder="url" required>
+            <button type="button" ng-click="addSite()" ng-disabled="newSiteForm.$invalid">
+                Add
+            </button>
+        </ng-form>
+        <p class="muted">This isolated form doesn't affect the validity of main (parent) form.</p>
+    </fieldset>
+
+    <div class="form-actions">
+        <button type="button" class="btn btn-primary" ng-disabled="creatingForm.$invalid">Create</button>
     </div>
 </form>
 </ui-source>
