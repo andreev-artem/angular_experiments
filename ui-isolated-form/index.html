@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
+
+    <script type="text/javascript" src="../assets/js/angular-1.0.1.js"></script>
+
+
+    <link rel="stylesheet" href="../assets/google-code-prettify/prettify.css" />
+    <script type="text/javascript" src="../assets/google-code-prettify/prettify.js"></script>
+    <script type="text/javascript" src="../ui-source/ui-source.js"></script>
+
+    <script type="text/javascript" src="ui-isolated-form.js"></script>
+
+    <style>
+        .container{
+            width: 90%;
+        }
+        input.ng-invalid {
+            color: #b94a48;
+            border-color: #ee5f5b;
+        }
+        input.ng-invalid:focus {
+            border-color: #e9322d;
+            -webkit-box-shadow: 0 0 6px #f8b9b7;
+            -moz-box-shadow: 0 0 6px #f8b9b7;
+            box-shadow: 0 0 6px #f8b9b7;
+        }
+        input.ng-valid {
+            color: #468847;
+            border-color: #468847;
+        }
+        input.ng-valid:focus {
+            border-color: #468847;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        }
+    </style>
+
+    <script type="text/javascript">
+        angular.element(document).ready(function() {
+            angular.bootstrap(document, ['UiIsolatedFormModule', 'UiSourceModule']);
+        });
+
+        function ObjectCreatingController($scope) {
+            $scope.info = {
+                name: '',
+                description: '',
+                sites: []
+            };
+
+            $scope.addSite = function(){
+                $scope.info.sites.push({name: $scope.newName, url: $scope.newUrl});
+                $scope.newName = '';
+                $scope.newUrl = '';
+            };
+        }
+    </script>
+</head>
+<body>
+    <div class="container well">
+        <h2 id="isolatedform">Isolated form</h2>
+        <div class="row-fluid" ng-controller="ObjectCreatingController">
+            <div class="span4">
+                <h3>Object creating</h3>
+                <form name="creatingForm">
+                    <fieldset>
+                        <legend>Main info:</legend>
+                        <label>Name:</label>
+                        <input type="text" name="name" ng-model="info.name" required>
+
+                        <label>Description:</label>
+                        <textarea rows="4" name="description" ng-model="info.description"></textarea>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Sites:</legend>
+                        <ul>
+                            <li ng-repeat="site in info.sites">{{site.name}} ({{site.url}})</li>
+                        </ul>
+                        <ng-form name="newSiteForm" class="form-horizontal" ui-isolated-form>
+                            <input type="text" class="span2" name="name" ng-model="newName" placeholder="name" required>
+                            <input type="url" class="span4" name="url" ng-model="newUrl" placeholder="url" required>
+                            <button class="btn" type="button" ng-click="addSite()" ng-disabled="newSiteForm.$invalid">
+                                Add
+                            </button>
+                        </ng-form>
+                        <p class="muted">This isolated form doesn't affect the validity of main (parent) form.</p>
+                    </fieldset>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-primary" ng-disabled="creatingForm.$invalid">Create</button>
+                    </div>
+                </form>
+            </div>
+            <div class="span8">
+<ui-source>
+<form name="creatingForm">
+    <fieldset>
+        <legend>Main info:</legend>
+        <label>Name:</label>
+        <input type="text" name="name" ng-model="info.name" required>
+
+        <label>Description:</label>
+        <textarea rows="4" name="description" ng-model="info.description"></textarea>
+    </fieldset>
+
+    <fieldset>
+        <legend>Sites:</legend>
+        <ul>
+            <li ng-repeat="site in info.sites">{{site.name}} ({{site.url}})</li>
+        </ul>
+        <ng-form name="newSiteForm" class="form-horizontal" ui-isolated-form>
+            <input type="text" name="name" ng-model="newName" placeholder="name" required>
+            <input type="url" name="url" ng-model="newUrl" placeholder="url" required>
+            <button type="button" ng-click="addSite()" ng-disabled="newSiteForm.$invalid">
+                Add
+            </button>
+        </ng-form>
+        <p class="muted">This isolated form doesn't affect the validity of main (parent) form.</p>
+    </fieldset>
+
+    <div class="form-actions">
+        <button type="button" class="btn btn-primary" ng-disabled="creatingForm.$invalid">Create</button>
+    </div>
+</form>
+</ui-source>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
