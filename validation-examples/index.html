@@ -13,6 +13,8 @@
     <script type="text/javascript" src="../assets/google-code-prettify/prettify.js"></script>
     <script type="text/javascript" src="../ui-source/ui-source.js"></script>
 
+    <script type="text/javascript" src="../ui-equal-to/ui-equal-to.js"></script>
+
     <style>
         input.ng-invalid {
             color: #b94a48;
@@ -37,7 +39,7 @@
     </style>
 
     <script type="text/javascript">
-        var mod = angular.module('validationModule', ['UiSourceModule']);
+        var mod = angular.module('validationModule', ['UiSourceModule', 'UiEqualToModule']);
 
         mod.directive('strongPassRequired', function () {
             var isValid = function(s) {
@@ -235,6 +237,47 @@
         <button type="button" class="btn btn-primary" ng-disabled="creatingForm.$invalid">Create</button>
     </div>
 </form>
+</ui-source>
+            </div>
+        </div>
+
+        <h2 id="equality">Password equality validation</h2>
+        <div class="row-fluid">
+            <div class="span4">
+                <h3>Change password</h3>
+                <form name="passwordsForm">
+                    <label>New password:</label>
+                    <input type="password" name="pwd" ng-model="pwd" required>
+
+                    <label>Confirm new password:</label>
+                    <input type="password" name="pwdConfirm" ng-model="pwdConfirm" required ui-equal-to="pwd">
+                    <div class="text-error" ng-show="passwordsForm.pwdConfirm.$error.equal">
+                        Should be equal to password
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-primary" ng-disabled="passwordsForm.$invalid">Change</button>
+                    </div>
+                </form>
+            </div>
+            <div class="span8">
+<ui-source>
+    <form name="passwordsForm">
+        <label>New password:</label>
+        <input type="password" name="pwd" ng-model="pwd" required>
+
+        <label>Confirm new password:</label>
+        <input type="password" name="pwdConfirm" ng-model="pwdConfirm" required ui-equal-to="pwd">
+        <div class="text-error" ng-show="passwordsForm.pwdConfirm.$error.equal">
+            Should be equal to password
+        </div>
+
+        <div class="form-actions">
+            <button type="button" class="btn btn-primary" ng-disabled="passwordsForm.$invalid">
+                Change
+            </button>
+        </div>
+    </form>
 </ui-source>
             </div>
         </div>
