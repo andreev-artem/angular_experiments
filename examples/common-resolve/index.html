@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Common resolver: once for application</title>
+
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.css">
+    <style>
+        .loading-widget {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body ng:app="ex">
+
+    <div class="container well">
+        <ul class="nav nav-tabs">
+            <li><a href="#/page1">Page1</a></li>
+            <li><a href="#/page2">Page2</a></li>
+            <li class="loading-widget" ng:show="loading"><ng:include src="'../../assets/loading-widget.html'"></ng:include></li>
+        </ul>
+
+        <ng:view></ng:view>
+    </div>
+
+    <script src="../../assets/js/angular-1.1.5.js"></script>
+
+    <script id="page1" type="text/ng-template">
+        <h1>Page 1</h1>
+        <p>{{someServerSideData.val}}</p>
+    </script>
+
+    <script id="page2" type="text/ng-template">
+        <h1>Page 2</h1>
+        <p>{{someServerSideData.val}}</p>
+    </script>
+
+    <script>
+        angular.module('ex', ['ex.sub'])
+        .config(function($routeProvider){
+            $routeProvider
+            .when('/page1', {
+                templateUrl: 'page1',
+                controller: 'page1Ctrl'
+            })
+            .otherwise({
+                redirectTo: '/page1'
+            })
+        })
+        .run(function($rootScope, $route){
+            $rootScope.$on('$routeChangeStart', function(){
+                $rootScope.loading = true;
+            });
+            $rootScope.$on('$routeChangeSuccess', function(){
+                $rootScope.loading = false;
+            });
+
+            angular.forEach($route.routes, function(route){
+                route.resolve = route.resolve || {};
+                route.resolve.someServerSideData = function($timeout){
+                    return $timeout(function(){
+                        return {
+                            val: Math.random()
+                        }
+                    }, 1000)
+                };
+            });
+        })
+
+        .controller('page1Ctrl', function($scope, someServerSideData){
+            $scope.someServerSideData = someServerSideData;
+        });
+
+        angular.module('ex.sub', [])
+        .config(function($routeProvider){
+            $routeProvider
+            .when('/page2', {
+                templateUrl: 'page2',
+                controller: 'page2Ctrl'
+            });
+        })
+        .controller('page2Ctrl', function($scope, someServerSideData){
+            $scope.someServerSideData = someServerSideData;
+        });
+    </script>
+
+</body>
+</html>
