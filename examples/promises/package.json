@@ -1,0 +1,13 @@
+{
+  "name": "promises-examples",
+  "version": "0.0.0",
+  "dependencies": {
+    "grunt": "",
+    "grunt-contrib-watch": "",
+    "grunt-karma": "",
+    "karma": "",
+    "karma-jasmine": "",
+    "karma-phantomjs-launcher": "",
+    "karma-junit-reporter": ""
+  }
+}
