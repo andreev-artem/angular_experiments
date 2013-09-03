@@ -34,3 +34,7 @@ You should consider such architecture as a starting point for your own architect
 * **config** - Karma config, app-specific configs (ex: dev and prod urls), etc.
 * **test** - unit and e2e tests + libs and Jasmine helpers.
 * ***Gruntfile.js*** - watch, html2js, karma and any other tasks which you want to use to automate your workflows.
+
+## Simple diagram for the implemented example
+
+![App diagram](https://raw.github.com/andreev-artem/angular_experiments/master/examples/architecture/docs/arch.png)
