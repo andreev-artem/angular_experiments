@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" ng:app="<%=app_module%>">
+<head>
+    <meta charset="utf-8">
+    <title>AngularJS app architecture example</title>
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+    <div class="container">
+
+        <div id="header" class="navbar navbar-fixed">
+            <div class="navbar-inner">
+
+                <ul class="nav">
+                    <li ng:class="{active: routeSegment.startsWith('admin')}">
+                        <a href="#/admin">Admin</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="base-container">
+            <div app:view-segment="0"></div>
+        </div>
+
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.js"></script>
+    <script src="lib/lodash.min.js"></script>
+    <script src="lib/angular-route-segment.js"></script>
+    <%=scripts%>
+</body>
+</html>

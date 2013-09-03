@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" ng:app="app">
+<head>
+    <meta charset="utf-8">
+    <title>AngularJS app architecture example</title>
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+    <div class="container">
+
+        <div id="header" class="navbar navbar-fixed">
+            <div class="navbar-inner">
+
+                <ul class="nav">
+                    <li ng:class="{active: routeSegment.startsWith('admin')}">
+                        <a href="#/admin">Admin</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="base-container">
+            <div app:view-segment="0"></div>
+        </div>
+
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.js"></script>
+    <script src="lib/lodash.min.js"></script>
+    <script src="lib/angular-route-segment.js"></script>
+    <script src="js/app.js?bust=1378216021878"></script>
+<script src="js/dal/api.js?bust=1378216021878"></script>
+<script src="js/dal/entitites/user.js?bust=1378216021878"></script>
+<script src="js/dal/fake/user.js?bust=1378216021878"></script>
+<script src="js/dal/rest/user.js?bust=1378216021878"></script>
+<script src="js/lib/ui/dialog.js?bust=1378216021878"></script>
+<script src="js/lib/ui/pagination.js?bust=1378216021878"></script>
+<script src="js/lib/ui/templates/message-box.html.js?bust=1378216021878"></script>
+<script src="js/lib/ui/templates/pagination.html.js?bust=1378216021878"></script>
+<script src="js/lib/ui/transition.js?bust=1378216021878"></script>
+<script src="js/pages/admin/groups/list.js?bust=1378216021878"></script>
+<script src="js/pages/admin/index.js?bust=1378216021878"></script>
+<script src="js/pages/admin/users/list.js?bust=1378216021878"></script>
+<script src="js/pages/pages.js?bust=1378216021878"></script>
+
+</body>
+</html>

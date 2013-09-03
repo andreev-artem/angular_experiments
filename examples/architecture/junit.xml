@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<testsuites>
+  <testsuite name="PhantomJS 1.9.0 (Windows 8)" package="unit" timestamp="2013-09-03T15:01:06" id="0" hostname="as" tests="45" errors="0" failures="0" time="0.075">
+    <properties>
+      <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.0 Safari/534.34"/>
+    </properties>
+    <testcase name="should properly create user" time="0.012" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_entities_user User"/>
+    <testcase name="should return empty string if name is not defined" time="0.002" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_entities_user User_prototype_getFullName"/>
+    <testcase name="should return empty string if last name is not defined" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_entities_user User_prototype_getFullName"/>
+    <testcase name="should return empty string if first name is not defined" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_entities_user User_prototype_getFullName"/>
+    <testcase name="should return empty string if middle name is not defined" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_entities_user User_prototype_getFullName"/>
+    <testcase name="should return empty string when we have empty first, middle and last" time="0" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_entities_user User_prototype_getFullName"/>
+    <testcase name="should return properly constructed full name string when we have empty middle and last" time="0" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_entities_user User_prototype_getFullName"/>
+    <testcase name="should return properly constructed full name string when we have empty first and last" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_entities_user User_prototype_getFullName"/>
+    <testcase name="should return properly constructed full name string when we have empty first and middle" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_entities_user User_prototype_getFullName"/>
+    <testcase name="should return properly constructed full name string when we have empty first" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_entities_user User_prototype_getFullName"/>
+    <testcase name="should return properly constructed full name string when we have empty middle" time="0" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_entities_user User_prototype_getFullName"/>
+    <testcase name="should return properly constructed full name string when we have empty last" time="0" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_entities_user User_prototype_getFullName"/>
+    <testcase name="should return properly constructed full name string when we have all parts" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_entities_user User_prototype_getFullName"/>
+    <testcase name="should call UserApi and properly initialize data" time="0.003" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_entities_user User_get"/>
+    <testcase name="should call UserApi and properly initialize data" time="0.004" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_entities_user User_getAll"/>
+    <testcase name="should return user data for existing item" time="0.002" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_fake_user UserFakeApi_get"/>
+    <testcase name="should reject with 404 if user does not exist" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_fake_user UserFakeApi_get"/>
+    <testcase name="should return right total count" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_fake_user UserFakeApi_query"/>
+    <testcase name="should return first 10 users if params is not passed" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_fake_user UserFakeApi_query"/>
+    <testcase name="should return users from 11 to 20" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_fake_user UserFakeApi_query"/>
+    <testcase name="should return users from 11 to 20" time="0" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_fake_user UserFakeApi_query"/>
+    <testcase name="should return users from 91 to 98" time="0" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_fake_user UserFakeApi_query"/>
+    <testcase name="should return users from 1 to 98" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_fake_user UserFakeApi_query"/>
+    <testcase name="should return users from 21 to 40" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_fake_user UserFakeApi_query"/>
+    <testcase name="should add new user" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_fake_user UserFakeApi_create"/>
+    <testcase name="should reject with 404 if user does not exist" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_fake_user UserFakeApi_update"/>
+    <testcase name="should update user" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_fake_user UserFakeApi_update"/>
+    <testcase name="should remove user" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_dal_fake_user UserFakeApi_remove"/>
+    <testcase name="should call User.getAll with page == location.page when called without arguments" time="0.004" classname="unit PhantomJS 1.9.0 (Windows 8).app_pages_admin_users_list UsersList_Loader"/>
+    <testcase name="should call User.getAll with passed page" time="0.002" classname="unit PhantomJS 1.9.0 (Windows 8).app_pages_admin_users_list UsersList_Loader"/>
+    <testcase name="should initialize data" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_pages_admin_users_list UsersList_Loader"/>
+    <testcase name="should return false if any student is selected" time="0.006" classname="unit PhantomJS 1.9.0 (Windows 8).app_pages_admin_users_list admin:Index_UsersList noSelectedUsers"/>
+    <testcase name="should return true if no student is selected" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_pages_admin_users_list admin:Index_UsersList noSelectedUsers"/>
+    <testcase name="should return true if selected any imported student" time="0.002" classname="unit PhantomJS 1.9.0 (Windows 8).app_pages_admin_users_list admin:Index_UsersList selectedExtSyncUsers"/>
+    <testcase name="should return false if selected only manually added users" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_pages_admin_users_list admin:Index_UsersList selectedExtSyncUsers"/>
+    <testcase name="should select all users" time="0.002" classname="unit PhantomJS 1.9.0 (Windows 8).app_pages_admin_users_list admin:Index_UsersList onSelectAll"/>
+    <testcase name="should deselect all users" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_pages_admin_users_list admin:Index_UsersList onSelectAll"/>
+    <testcase name="should track dependency `totalUsers` -&gt; `usersTotalCount`" time="0.003" classname="unit PhantomJS 1.9.0 (Windows 8).app_pages_admin_users_list admin:Index_UsersList admin:Index_UsersList_Pagination"/>
+    <testcase name="should watch for location.page changes" time="0.002" classname="unit PhantomJS 1.9.0 (Windows 8).app_pages_admin_users_list admin:Index_UsersList admin:Index_UsersList_Pagination"/>
+    <testcase name="should update location.page" time="0.002" classname="unit PhantomJS 1.9.0 (Windows 8).app_pages_admin_users_list admin:Index_UsersList admin:Index_UsersList_Pagination"/>
+    <testcase name="should check UsersList.noSelectedUsers and UsersList.selectedExtSyncUsers" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_pages_admin_users_list admin:Index_UsersList admin:Index_UsersList_BtnRemove isDisabled"/>
+    <testcase name="should remove all selected users" time="0.002" classname="unit PhantomJS 1.9.0 (Windows 8).app_pages_admin_users_list admin:Index_UsersList admin:Index_UsersList_BtnRemove removeUsers"/>
+    <testcase name="should call UsersList.loadData after successful removes" time="0.002" classname="unit PhantomJS 1.9.0 (Windows 8).app_pages_admin_users_list admin:Index_UsersList admin:Index_UsersList_BtnRemove removeUsers"/>
+    <testcase name="should call UsersList.loadData after error" time="0.001" classname="unit PhantomJS 1.9.0 (Windows 8).app_pages_admin_users_list admin:Index_UsersList admin:Index_UsersList_BtnRemove removeUsers"/>
+    <testcase name="should remove all selected users" time="0.002" classname="unit PhantomJS 1.9.0 (Windows 8).app_pages_admin_users_list admin:Index_UsersList admin:Index_UsersList_BtnRemove onClick"/>
+    <system-out><![CDATA[
+]]></system-out>
+    <system-err/>
+  </testsuite>
+</testsuites>

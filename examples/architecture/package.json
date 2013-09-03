@@ -1,0 +1,20 @@
+{
+    "name": "architecture-example",
+    "version": "0.0.0",
+    "dependencies": {
+        "grunt": "",
+        "grunt-contrib-uglify": "",
+        "grunt-contrib-concat": "",
+        "grunt-contrib-watch": "",
+        "grunt-contrib-less": "",
+        "grunt-karma": "",
+        "grunt-cleanx": "",
+        "grunt-contrib-clean": "",
+        "grunt-contrib-copy": "",
+        "karma": "",
+        "karma-jasmine": "",
+        "karma-phantomjs-launcher": "",
+        "karma-junit-reporter": ""
+    }
+}
+

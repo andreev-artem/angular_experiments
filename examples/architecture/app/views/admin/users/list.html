@@ -1,0 +1,47 @@
+<div id="users-list">
+    <div class="data">
+        <table class="table">
+            <tr>
+                <th>
+                    <input type="checkbox"
+                           title="Select all"
+                           ng:model="allSelected"
+                           ng:click="onSelectAll()" />
+                </th>
+                <th>Name</th>
+                <th>E-mail</th>
+                <th>External sync</th>
+            </tr>
+
+            <tr ng:repeat="user in data.users.list">
+                <td>
+                    <input type="checkbox" ng:model="user.selected" />
+                </td>
+                <td>{{user.getFullName()}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.extSync}} <span ng:show="user.extSync">(can't be removed)</span></td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div class="controls">
+        <div class="actions pull-left">
+            <button class="btn"
+                    ng:controller="admin:Index.UsersList.BtnRemove"
+                    ng:disabled="isDisabled()"
+                    ng:click="onClick()">Remove</button>
+        </div>
+
+        <div ng:controller="admin:Index.UsersList.Pagination">
+            <pagination class="pull-right"
+                        page="curPage"
+                        total-items="totalUsers"
+                        items-per-page="perPage"
+                        max-size="5"
+                        on-select-page="onSelectPage(page)">
+            </pagination>
+            <div class=loading ng:show="pageLoading"></div>
+        </div>
+    </div>
+</div>

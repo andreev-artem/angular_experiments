@@ -1,0 +1,18 @@
+<div id="admin">
+
+    <div class="tabbable tabs-left">
+        <ul class="nav nav-tabs">
+            <li ng:class="{active: routeSegment.startsWith('admin.users')}">
+                <a href="#/admin/users">Users</a>
+            </li>
+            <li ng:class="{active: routeSegment.startsWith('admin.groups')}">
+                <a href="#/admin/groups">Groups</a>
+            </li>
+        </ul>
+
+        <div class="tab-content" app:view-segment="1">
+
+        </div>
+    </div>
+
+</div>
