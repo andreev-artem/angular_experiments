@@ -56,7 +56,8 @@
     border: 0 !important;
     font-family: sans-serif;
     font-size: 100%;
-    height: 15px;
+    /*height: 15px;*/
+	height: auto;
     padding: 5px;
     margin: 1px 0;
     outline: 0;
@@ -64,6 +65,7 @@
     -moz-box-shadow   : none;
     -o-box-shadow     : none;
     box-shadow        : none;
+	cursor: pointer;
 }
 .mcombo-container-multi .mcombo-selected-choices .search-field .default {
     color: #999;
@@ -103,6 +105,7 @@
     height: 13px;
     font-size: 1px;
     background: url('ui-multicombo-sprite.png') right top no-repeat;
+	cursor: pointer;
 }
 .mcombo-container-multi .mcombo-selected-choices .selected-choice .selected-choice-delete:hover {
     background-position: right -11px;
