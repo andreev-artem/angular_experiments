@@ -9,17 +9,17 @@ angular.module("ExperimentsModule", [])
                 '<div class="mcombo-container mcombo-container-multi" style="width: 300px;">' +
                 '    <ul class="mcombo-selected-choices">' +
                 '        <li class="selected-choice" ng-repeat="choice in _selectedChoices">'+
-                '            <span>{{choice.text}}</span>' +
+                '            <span>{{choice.text || choice}}</span>' +
                 '            <a class="selected-choice-delete" ng-click="removeFromSelected(choice)"></a>' +
                 '        </li>' +
                 '        <li class="search-field">' +
-                '            <input type="text" placeholder="Choose..." autocomplete="off" ng-model="_search">' +
+                '            <input type="text" placeholder="{{filteredChoices().length == 0 ? \'\' : _placeholder}}" autocomplete="off" ng-model="_search">' +
                 '        </li>' +
                 '    </ul>' +
                 '    <div class="mcombo-drop">' +
                 '        <ul class="choices">' +
                 '            <li class="item" ng-repeat="choice in filteredChoices()" ng-click="moveToSelected(choice, $event)">' +
-                '                {{choice.text}}' +
+                '                {{choice.text || choice}}' +
                 '            </li>' +
                 '            <li class="no-results" ng-show="_search && filteredChoices().length == 0">No results match "{{_search}}"</li>' +
                 '        </ul>' +
@@ -27,7 +27,8 @@ angular.module("ExperimentsModule", [])
                 '</div>',
             scope: {
                 _choices: '=uiMcomboChoices',
-                _selectedChoices: '=uiMcomboSelected'
+                _selectedChoices: '=uiMcomboSelected',
+				_placeholder: '@uiMcomboPlaceholder'
             },
             controller: ['$scope', '$filter', function($scope, $filter) {
                     $scope._searchElem = null;
@@ -81,7 +82,7 @@ angular.module("ExperimentsModule", [])
                             element.removeClass('mcombo-container-active');
                             close = null;
                             openElement = null;
-                        }
+                        };
                         $document.bind('click', close);
                     }
 
