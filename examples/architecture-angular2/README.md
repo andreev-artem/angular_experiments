@@ -34,13 +34,13 @@ It should cover the following tasks:
 
 * `gulp server`
 
-    https://localhost - dev app with sandbox API urls
+    http://localhost - dev app with sandbox API urls
     
-    https://localhost/mocked/ - dev app with Fake API data
+    http://localhost/mocked/ - dev app with Fake API data
     
 * `gulp server --env=production`
 
-    https://localhost - dev app with production API urls
+    http://localhost - dev app with production API urls
     
 * `gulp unit`
 
