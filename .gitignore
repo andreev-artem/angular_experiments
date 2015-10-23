@@ -3,3 +3,12 @@
 *node_modules*
 *test-results.xml
 mongoose*
+examples/architecture-angular2/typings/*
+!examples/architecture-angular2/typings/tsd.d.ts
+examples/architecture-angular2/app/index*.html
+examples/architecture-angular2/app/js/*
+examples/architecture-angular2/app/css/*
+examples/architecture-angular2/app/fonts/bootstrap/*
+examples/architecture-angular2/app/sass/bootstrap/*
+examples/architecture-angular2/app/ts/config.ts
+examples/architecture-angular2/tsd.json

@@ -1,0 +1,43 @@
+{
+  "name": "angular2-architecture-example",
+  "version": "0.0.1",
+  "description": "A minimal Angular2 playground using TypeScript",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:andreev-artem/angular_experiments.git"
+  },
+  "dependencies": {
+    "angular2": "2.0.0-alpha.44",
+    "systemjs": "~0.18.4",
+    "bootstrap-sass": "~3.3.5",
+    "rx": "~4.0.6"
+  },
+  "devDependencies": {
+    "del": "^1.2.0",
+    "open": "0.0.5",
+
+    "gulp": "^3.9.0",
+    "gulp-typescript": "^2.8.0",
+    "gulp-protractor": "~1.0.0",
+    "gulp-load-plugins": "~0.10.0",
+    "gulp-util": "~3.0.4",
+    "run-sequence": "~1.1.0",
+    "gulp-sass": "~2.0.4",
+
+    "yargs": "~3.8.0",
+    "browser-sync": "~2.6.11",
+    "connect-modrewrite": "~0.8.1",
+    "globby": "~2.0.0",
+    "lodash": "~3.8.0",
+    "fs-extra": "~0.24.0",
+
+    "karma": "~0.13.9",
+    "karma-jasmine": "~0.3.6",
+    "karma-phantomjs2-launcher": "~0.3.2",
+    "karma-chrome-launcher": "~0.2.0",
+    "karma-ng-html2js-preprocessor": "~0.1.2",
+    "karma-coverage": "~0.5.0",
+    "es6-shim": "~0.33.6",
+    "es5-shim": "~4.1.15"
+  }
+}

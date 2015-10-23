@@ -1,3 +1,5 @@
+# OUTDATED
+
 # Example of AngularJS app architecture
 
 It contains very limited amount of very simple code to illustrate the general approach to the building of multi-layered application. [Demo](http://andreev-artem.github.io/angular_experiments/examples/architecture/app/index_mock.html#/admin/users) - nothing interesting regarding to UI but it works.

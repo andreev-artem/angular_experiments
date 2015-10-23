@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular2 architecture example</title>
+
+    <!-- build:css /css/style.css -->
+    <link href="/css/style.css" rel="stylesheet">
+    <!-- endbuild -->
+</head>
+
+<body>
+    <app>Loading...</app>
+</body>
+
+
+<!-- build:js /js/app.js -->
+<script src="/js/libs/system-csp-production.src.js"></script>
+<script>
+    System.config({
+        defaultJSExtensions: true,
+        map: {
+            rx: '/js/libs/rx.lite.js'
+        }
+    });
+</script>
+<script src="/js/libs/angular2.js"></script>
+<script src="/js/libs/http.js"></script>
+<script src="/js/bootstrap<%= mocked ? '_mock' : '' %>.js"></script>
+<script>
+    System.import('/js/bootstrap<%= mocked ? "_mock" : "" %>.js').catch(console.log.bind(console));
+</script>
+<!-- endbuild -->
+
+
+</html>

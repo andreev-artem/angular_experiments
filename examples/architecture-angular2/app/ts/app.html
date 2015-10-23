@@ -1,0 +1,10 @@
+<div class="m-app">
+    <h1 *ng-if="name">Hello, {{name}}!!!</h1>
+
+    <ul>
+        <li *ng-for="#user of users">
+            {{user.getFullName()}}
+            {{user.email}}
+        </li>
+    </ul>
+</div>
