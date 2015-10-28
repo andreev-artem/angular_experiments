@@ -19,11 +19,15 @@ It should cover the following tasks:
 - [ ] unit-tests
     - [x] - base skeleton with simple examples
     - [ ] - more complex project components unit-tests
+    - [ ] - coverage
 - [ ] e2e (protractor)
+    - [x] - base skeleton with helpers and simple examples
+    - [ ] - more complex project components e2e-tests
 - [ ] more complex project components
     - [ ] routing
     - [ ] ... to be continued
 - [ ] ci/production gulp tasks
+- [ ] [Hot Loader](http://blog.mgechev.com/2015/10/26/angular2-hot-loader-hot-loading-tooling/)
 
 ## Installing Local Env
 
@@ -53,3 +57,7 @@ It should cover the following tasks:
 * `gulp ci-unit`
 
     run unit-tests in continuous integration mode using PhantomJS2
+    
+* `gulp e2e`
+
+    run e2e tests using Chrome

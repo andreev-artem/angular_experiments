@@ -186,7 +186,9 @@ module.exports = function(options) {
     });
 
     var protractor = require('gulp-protractor').protractor;
-    gulp.task('e2e', function(cb) {
+    var webdriverUpdate = require('gulp-protractor').webdriver_update;
+    gulp.task('webdriver_update', webdriverUpdate);
+    gulp.task('e2e', ['webdriver_update'], function(cb) {
         gulp.src([])
         .pipe(protractor({
             configFile: options.PROJECT_PATH + '/tests/protractor.conf.js'
