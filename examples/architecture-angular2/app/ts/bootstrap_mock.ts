@@ -1,8 +1,8 @@
 import {bootstrap} from 'angular2/angular2';
-import {App, ALL_BINDINGS} from "./app";
-import {API_BINDINGS} from './dal/real/_apiBindings';
-import {FAKE_API_BINDINGS} from './dal/fake/_fakeApiBindings';
+import {App, ALL_PROVIDERS} from "./app";
+import {API_PROVIDERS} from './dal/real/_apiProviders';
+import {FAKE_API_PROVIDERS} from './dal/fake/_fakeApiProviders';
 
-ALL_BINDINGS.push(FAKE_API_BINDINGS);
+ALL_PROVIDERS.push(FAKE_API_PROVIDERS);
 
-bootstrap(App, ALL_BINDINGS);
+bootstrap(App, ALL_PROVIDERS);

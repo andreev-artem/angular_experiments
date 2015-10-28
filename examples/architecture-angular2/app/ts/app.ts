@@ -1,9 +1,9 @@
 import {Component, bootstrap, CORE_DIRECTIVES, bind} from 'angular2/angular2';
-import {HTTP_BINDINGS, Http} from 'angular2/http';
+import {HTTP_PROVIDERS, Http} from 'angular2/http';
 import {UserClient} from "./bl/userClient";
 import {User} from "./bl/user";
-import {API_BINDINGS} from './dal/real/_apiBindings';
-import {BL_BINDINGS} from './bl/_blBindings';
+import {API_PROVIDERS} from './dal/real/_apiProviders';
+import {BL_PROVIDERS} from './bl/_blProviders';
 
 @Component({
     selector: 'app',
@@ -24,8 +24,8 @@ export class App {
     }
 }
 
-export let ALL_BINDINGS = [
-    HTTP_BINDINGS,
-    API_BINDINGS,
-    BL_BINDINGS
+export let ALL_PROVIDERS = [
+    HTTP_PROVIDERS,
+    API_PROVIDERS,
+    BL_PROVIDERS
 ];
