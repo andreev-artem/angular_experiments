@@ -21,7 +21,6 @@ module.exports = function (config) {
             'node_modules/angular2/bundles/angular2.js',
             'node_modules/angular2/bundles/http.js',
             'node_modules/angular2/bundles/testing.js',
-            'node_modules/rx/dist/rx.lite.js',
             {pattern: 'app/js/**/*.js', included: false, watched: true},
 
             'tests/karma-tests-startup.js'

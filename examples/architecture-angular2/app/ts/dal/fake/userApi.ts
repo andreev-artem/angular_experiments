@@ -1,12 +1,12 @@
 import {Injectable} from 'angular2/angular2';
 import {URLSearchParams} from 'angular2/http';
-import {Observable} from 'rx';
+import Observable from '@reactivex/rxjs/dist/cjs/Observable';
 
 @Injectable()
 export class UserFakeApi {
 
     getAll(page: number = 1, limit: number = 10): any {
-        return Observable.just({
+        return Observable.of({
             data: userFakeData.slice((page - 1) * limit, page * limit),
             total: userFakeData.length
         });

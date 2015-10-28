@@ -7,7 +7,7 @@ import {
     it
 } from 'angular2/testing';
 import {provide} from 'angular2/angular2';
-import {Observable} from 'rx';
+import Observable from '@reactivex/rxjs/dist/cjs/Observable';
 import {UserClient} from "./userClient";
 import {UserApi} from "../dal/real/userApi";
 import {Api} from "../dal/real/_api";
@@ -18,7 +18,7 @@ export function main() {
     class MockUserApi extends UserApi {
 
         getAll(){
-            return Observable.just(result);
+            return Observable.of(result);
         }
 
     }

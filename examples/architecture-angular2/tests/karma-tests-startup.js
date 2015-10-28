@@ -9,9 +9,6 @@ __karma__.loaded = function () {
 };
 
 System.config({
-    map: {
-        rx: 'base/node_modules/rx/dist/rx.lite.js'
-    },
     packages: {
         'angular2': {
             defaultExtension: false
