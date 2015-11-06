@@ -9,8 +9,7 @@
   "dependencies": {
     "angular2": "2.0.0-alpha.45",
     "systemjs": "~0.18.4",
-    "bootstrap-sass": "~3.3.5",
-    "rx": "~4.0.6"
+    "bootstrap-sass": "~3.3.5"
   },
   "devDependencies": {
     "del": "^1.2.0",
