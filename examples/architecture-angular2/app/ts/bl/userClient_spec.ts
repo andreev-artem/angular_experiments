@@ -7,7 +7,7 @@ import {
     it
 } from 'angular2/testing';
 import {provide} from 'angular2/angular2';
-import Observable from '@reactivex/rxjs/dist/cjs/Observable';
+import * as Observable from '@reactivex/rxjs/dist/cjs/Observable';
 import {UserClient} from "./userClient";
 import {UserApi} from "../dal/real/userApi";
 import {Api} from "../dal/real/_api";

@@ -35,8 +35,8 @@ module.exports = function(options) {
             'node_modules/angular2/bundles/http.min.js',
             'node_modules/angular2/bundles/router.js',
             'node_modules/angular2/bundles/router.min.js',
-            'node_modules/systemjs/dist/system-csp-production.js',
-            'node_modules/systemjs/dist/system-csp-production.src.js',
+            'node_modules/systemjs/dist/system.js',
+            'node_modules/systemjs/dist/system.src.js',
             'node_modules/rx/dist/rx.lite.js'
         ]).pipe(gulp.dest(APP_PATH + '/js/libs'));
     });
@@ -76,7 +76,7 @@ module.exports = function(options) {
     var typescript = require('gulp-typescript');
     var tsProject = typescript.createProject({
         noImplicitAny: false,
-        module: 'system',
+        module: 'commonjs',
         target: 'ES5',
         emitDecoratorMetadata: true,
         experimentalDecorators: true,

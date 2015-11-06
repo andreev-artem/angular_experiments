@@ -15,17 +15,16 @@
 
 
 <!-- build:js /js/app.js -->
-<script src="/js/libs/system-csp-production.src.js"></script>
+<script src="/js/libs/system.src.js"></script>
 <script>
     System.config({
-        defaultJSExtensions: true,
+        defaultJSExtensions: true
     });
 </script>
 <script src="/js/libs/angular2.js"></script>
 <script src="/js/libs/http.js"></script>
-<script src="/js/bootstrap<%= mocked ? '_mock' : '' %>.js"></script>
 <script>
-    System.import('/js/bootstrap<%= mocked ? "_mock" : "" %>.js').catch(console.log.bind(console));
+    System.import('/js/bootstrap<%= mocked ? "_mock" : "" %>').catch(console.log.bind(console));
 </script>
 <!-- endbuild -->
 
