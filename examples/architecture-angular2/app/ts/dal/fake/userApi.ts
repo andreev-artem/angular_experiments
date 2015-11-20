@@ -1,6 +1,6 @@
 import {Injectable} from 'angular2/angular2';
 import {URLSearchParams} from 'angular2/http';
-import * as Observable from '@reactivex/rxjs/dist/cjs/Observable';
+import {Observable} from 'angular2/angular2';
 
 @Injectable()
 export class UserFakeApi {

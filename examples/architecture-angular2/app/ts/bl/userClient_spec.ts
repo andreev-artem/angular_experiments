@@ -6,8 +6,7 @@ import {
     beforeEachProviders,
     it
 } from 'angular2/testing';
-import {provide} from 'angular2/angular2';
-import * as Observable from '@reactivex/rxjs/dist/cjs/Observable';
+import {provide, Observable} from 'angular2/angular2';
 import {UserClient} from "./userClient";
 import {UserApi} from "../dal/real/userApi";
 import {Api} from "../dal/real/_api";
