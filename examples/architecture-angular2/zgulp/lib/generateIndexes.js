@@ -14,16 +14,18 @@ module.exports = function(params) {
      * regular app
      */
     fs.writeFileSync(params.appPath + '/index.html', template(tpl)({
-        mocked: false
+        mocked: false,
+        dev: params.dev
     }));
     gUtil.log('File "index.html" created.');
 
     /**
     * mocked app
     */
-    fs.writeFileSync(params.appPath + '/index_mock.html', template(tpl)({
-        mocked: true
+    fs.writeFileSync(params.appPath + '/index_mocked.html', template(tpl)({
+        mocked: true,
+        dev: params.dev
     }));
-    gUtil.log('File "index_mock.html" created.');
+    gUtil.log('File "index_mocked.html" created.');
 
 };

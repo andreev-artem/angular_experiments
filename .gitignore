@@ -12,3 +12,4 @@ examples/architecture-angular2/app/fonts/bootstrap/*
 examples/architecture-angular2/app/sass/bootstrap/*
 examples/architecture-angular2/app/ts/config.ts
 examples/architecture-angular2/tsd.json
+examples/architecture-angular2/dist/*

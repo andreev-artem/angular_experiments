@@ -3,10 +3,10 @@
 var gulp = require('gulp');
 var fs = require('fs-extra');
 var del = require('del');
+var _ = require('lodash');
 var path = require('path');
 var bs = require("browser-sync").create();
 var argv = require('yargs').argv;
-var modRewrite  = require('connect-modrewrite');
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'uglify-save-license', 'run-sequence']
 });
@@ -15,42 +15,31 @@ var generateIndexes = require('./lib/generateIndexes');
 var errorHandler = require('./lib/errorHandler');
 
 
-var APP_PATH = 'app';
-
 module.exports = function(options) {
 
-    gulp.task('clean', function(cb) {
-        del([
+    var APP_PATH = options.paths.app;
+
+    gulp.task('clean', function() {
+        return del([
             APP_PATH + '/js/**',
             APP_PATH + '/sass/bootstrap/**',
             APP_PATH + '/index_*.html'
-        ], cb);
+        ]);
     });
 
     gulp.task('copy-libs', function () {
-        return gulp.src([
-            'node_modules/angular2/bundles/angular2.js',
-            'node_modules/angular2/bundles/angular2.min.js',
-            'node_modules/angular2/bundles/http.js',
-            'node_modules/angular2/bundles/http.min.js',
-            'node_modules/angular2/bundles/router.js',
-            'node_modules/angular2/bundles/router.min.js',
-            'node_modules/systemjs/dist/system.js',
-            'node_modules/systemjs/dist/system.src.js',
-            'node_modules/rx/dist/rx.lite.js'
-        ]).pipe(gulp.dest(APP_PATH + '/js/libs'));
+        return gulp.src(options.paths.libs)
+            .pipe(gulp.dest(APP_PATH + '/js/libs'));
     });
 
     gulp.task('copy-bootstrap', function () {
-        return gulp.src([
-            'node_modules/bootstrap-sass/assets/stylesheets/bootstrap/**'
-        ]).pipe(gulp.dest(APP_PATH + '/sass/bootstrap'));
+        return gulp.src(options.paths.bootstrap)
+            .pipe(gulp.dest(APP_PATH + '/sass/bootstrap'));
     });
 
     gulp.task('copy-html', function () {
-        return gulp.src([
-            APP_PATH + '/ts/**/*.html'
-        ]).pipe(gulp.dest(APP_PATH + '/js'));
+        return gulp.src(options.paths.html)
+            .pipe(gulp.dest(APP_PATH + '/js'));
     });
 
     gulp.task('copy-config', function (cb) {
@@ -64,31 +53,15 @@ module.exports = function(options) {
     gulp.task('index', function(cb) {
         generateIndexes({
             appPath: APP_PATH,
-            jsFiles: [
-                APP_PATH + '/js/**/*.js',
-                '!' + APP_PATH +'/js/libs/**',
-                '!' + APP_PATH + '/js/**/*.spec.js'
-            ]
+            dev: true
         });
         cb();
     });
 
-    var typescript = require('gulp-typescript');
-    var tsProject = typescript.createProject({
-        noImplicitAny: false,
-        module: 'commonjs',
-        target: 'ES5',
-        emitDecoratorMetadata: true,
-        experimentalDecorators: true,
-        moduleResolution: 'node'
-    });
+    var tsProject = $.typescript.createProject(options.tsProject);
     gulp.task('ts2js', function () {
-        var tsResult = gulp.src([
-            APP_PATH + '/ts/**/*.ts',
-            '!' + APP_PATH + '/ts/configs/**',
-            'typings/tsd.d.ts'
-        ])
-        .pipe(typescript(tsProject));
+        var tsResult = gulp.src(options.paths.ts)
+            .pipe($.typescript(tsProject));
 
         return tsResult.js.pipe(gulp.dest(APP_PATH + '/js'));
     });
@@ -129,35 +102,16 @@ module.exports = function(options) {
     });
 
     gulp.task('serve', function() {
-        bs.init({
-            port: argv.port || 80,
-            open: false,
-            notify: false,
-            server: {
-                baseDir: APP_PATH,
-                middleware: [
-                    modRewrite([
-                        // ignore assets, etc
-                        '^(/css/.*)$ $1 [L]',
-                        '^(/fonts/.*)$ $1 [L]',
-                        '^(/js/.*)$ $1 [L]',
-                        // mocked app
-                        '^/mocked/$ /index_mock.html [L]',
-                        '^/mocked/.*$ /index_mock.html [L]',
-                        // regular app
-                        '^/.*$ /index.html [L]'
-                    ])
-                ]
-            }
-        });
+        var bsOptions = _.cloneDeep(options.bsOptions);
+        bsOptions.server.baseDir = APP_PATH;
+        bs.init(bsOptions);
     });
 
     gulp.task('server', function(cb) {
         return $.runSequence(
             'clean',
             ['copy-libs', 'copy-bootstrap', 'copy-config'],
-            ['sass', 'ts2js', 'copy-html'],
-            'index',
+            ['sass', 'ts2js', 'copy-html', 'index'],
             ['watch', 'serve'],
             cb
         );

@@ -26,7 +26,8 @@ It should cover the following tasks:
 - [ ] more complex project components
     - [ ] routing
     - [ ] ... to be continued
-- [ ] ci/production gulp tasks
+- [x] production gulp tasks
+- [ ] CI
 - [ ] [Hot Loader](http://blog.mgechev.com/2015/10/26/angular2-hot-loader-hot-loading-tooling/)
 
 ## Installing Local Env
@@ -61,3 +62,11 @@ It should cover the following tasks:
 * `gulp e2e`
 
     run e2e tests using Chrome
+    
+* `gulp build`
+
+    build dist version of the app
+    
+* `gulp dist-e2e`
+
+    run e2e tests for the dist version app (`gulp build` must be run before) using Firefox

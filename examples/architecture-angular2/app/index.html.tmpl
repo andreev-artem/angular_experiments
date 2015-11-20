@@ -14,7 +14,8 @@
 </body>
 
 
-<!-- build:js /js/app.js -->
+<!-- build:js /js/bootstrap<%= mocked ? '_mocked' : '' %>.js -->
+<% if (dev) { %>
 <script src="/js/libs/system.src.js"></script>
 <script>
     System.config({
@@ -24,8 +25,13 @@
 <script src="/js/libs/angular2.js"></script>
 <script src="/js/libs/http.js"></script>
 <script>
-    System.import('/js/bootstrap<%= mocked ? "_mock" : "" %>').catch(console.log.bind(console));
+    System.import('/js/bootstrap<%= mocked ? "_mocked" : "" %>').catch(console.log.bind(console));
 </script>
+<% } else { %>
+<script src="/js/libs/Reflect.js"></script>
+<script src="/js/libs/zone.js"></script>
+<script src="/js/bootstrap<%= mocked ? '_mocked' : '' %>.js"></script>
+<% } %>
 <!-- endbuild -->
 
 
